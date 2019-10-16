@@ -1,9 +1,6 @@
 class LinkedList {
     constructor(value) {
-        this.head = {
-            value: value,
-            next: null
-        }
+        this.head = { value: value, next: null };
         this.tail = this.head;
         this.length = 1;
     }
@@ -15,36 +12,47 @@ class LinkedList {
         return this;
     }
 
-    insert(val, i) {
+    prepend(val) {
+        const newNode = { value: val, next: this.head };
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
+
+    insertAtIndex(val, i) {
         if(typeof i !== "number") throw new Error("Error: index of insertion value must be a number.")
-        let newNode = {
-            value: val,
-            next: null
-        }
-        if(i === 0) {
-            newNode.next = this.head;
-            this.head = newNode;
-            this.length++;
-            return this;
-        }
+        if(i === 0) return this.prepend(val);
+        if(i+1 === this.length) return this.append(val);
+        const newNode = { value: val, next: null };
         let currentNode = this.head;
-        for(let j = 0; j <= i; j++){
+        for(let j = 0; j < i-1; j++){
             currentNode = currentNode.next;
-            if(currentNode.next === null) {
-                currentNode.next = newNode;
-                return this;
-            }
         }
         newNode.next = currentNode.next;
         currentNode.next = newNode;
+        this.length++;
+        return this;
+    }
+
+    deleteHead() {
+        this.head = this.head.next;
+        this.length--;
+        return this;
+    }
+
+    deleteTail() {
+        let currentNode = this.head;
+        while(currentNode.next.next !== null){
+            currentNode = currentNode.next;
+        }
+        currentNode.next = null;
+        this.length--;
         return this;
     }
 
     deleteOneByValue(val){
-        if(this.head.value === val) {
-            this.head = this.head.next;
-            return this.head;
-        }
+        if(this.head.value === val) return this.deleteHead();
+        if(this.tail.value === val) return this.deleteTail();
         let currentNode = this.head;
         do {
             if(currentNode.next.value === val){
@@ -67,11 +75,3 @@ class LinkedList {
         } while (currentNode !== null);
     }
 };
-
-const list = new LinkedList(1);
-
-console.log(list.head);
-list.insert(0, 0);
-console.log(list.head);
-list.insert(2, 10);
-console.log(list.head);
