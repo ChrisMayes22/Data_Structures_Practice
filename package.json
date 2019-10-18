@@ -1,0 +1,24 @@
+{
+  "name": "algorithms_practice",
+  "version": "1.0.0",
+  "description": "classwork",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon --exec mocha -R min"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisMayes22/Data_Structures_Practice.git"
+  },
+  "author": "Chris Mayes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisMayes22/Data_Structures_Practice/issues"
+  },
+  "homepage": "https://github.com/ChrisMayes22/Data_Structures_Practice#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1",
+    "nodemon": "^1.19.4"
+  }
+}
