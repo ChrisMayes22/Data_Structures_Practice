@@ -9,7 +9,7 @@ class Stack {
     constructor(){
         this.top = null;
         this.bottom = null;
-        this.length = 1;
+        this.length = 0;
     }
 
     peek() {
@@ -21,7 +21,15 @@ class Stack {
         node.next = this.top;
         if(this.top === null) this.bottom = node;
         this.top = node;
+        this.length++;
         return node;
+    }
+
+    pop(){
+        const top = this.top;
+        this.top = this.top.next;
+        this.length--;
+        return top;
     }
 
 }
