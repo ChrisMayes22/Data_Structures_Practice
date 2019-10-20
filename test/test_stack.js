@@ -1,4 +1,4 @@
-const Stack = require('../Data Structures/Stacks_and_Queues').stack;
+const Stack = require('../Data Structures/Stack');
 const expect = require('chai').expect;
 
 describe('When Stack is initialized, it has expected properties', function(){

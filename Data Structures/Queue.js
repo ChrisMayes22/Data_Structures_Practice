@@ -2,10 +2,11 @@ class Node {
     constructor(value){
         this.value = value;
         this.next = null;
+        this.previous = null;
     }
 }
 
-class Stack {
+class Queue {
     constructor(){
         this.top = null;
         this.bottom = null;
@@ -13,10 +14,10 @@ class Stack {
     }
 
     peek() {
-        return this.top;
+        return this.bottom;
     }
 
-    push(value){
+    enqueue(value) {
         const node = new Node(value);
         if(this.length === 0) {
             this.top = node;
@@ -24,20 +25,20 @@ class Stack {
         } else {
             node.next = this.top;
             this.top = node;
+            node.next.previous = node;
         }
         this.length++;
         return node;
     }
 
-    pop(){
-        const top = this.top;
-        this.top = this.top.next;
-        this.length--;
-        return top;
+    dequeue() {
+        if(this.length === 0) throw new Error("Error: Cannot call queue.dequeue when the queue is empty.")
+        const bottom = this.bottom;
+        this.bottom = this.bottom.previous;
+        this.length--
+        return bottom;
     }
 
 }
 
-module.exports = {
-    stack: Stack
-};
+module.exports = Queue;
