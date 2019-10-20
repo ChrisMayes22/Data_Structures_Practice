@@ -79,5 +79,6 @@ describe('When Stack methods are called, they behave as expected', function(){
         stack.pop();
         expect(stack.length).to.equal(1);
         stack.pop();
+        expect(stack.length).to.equal(0);
     })
 })
